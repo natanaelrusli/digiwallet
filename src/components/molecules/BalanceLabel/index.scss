@@ -1,0 +1,10 @@
+@use '/src/components/sass/mixins';
+
+.balance-label {
+  @include mixins.flexColumn;
+
+  &__top {
+    margin-bottom: -3px;
+    text-align: end;
+  }
+}

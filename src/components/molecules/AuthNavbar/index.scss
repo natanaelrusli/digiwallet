@@ -1,0 +1,48 @@
+.auth-navbar {
+  position: absolute;
+  top: 0;
+  display: flex;
+  background-color: transparent;
+  padding: 0.4rem 0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+
+  &__container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 1150px;
+  }
+
+  &__left {
+    flex: 1;
+  }
+
+  &__right {
+    flex: 1;
+
+    &__items {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+
+      li {
+        margin: 1rem;
+        text-decoration: none;
+      }
+
+      .navbar_item {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .active {
+        border-bottom: 1px solid #fff;
+      }
+    }
+  }
+}

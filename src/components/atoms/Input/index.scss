@@ -1,0 +1,21 @@
+@use '/src/components/sass/colors';
+
+.input {
+  width: 100%;
+  padding: 0.7rem 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid colors.$border-gray;
+
+  &:focus {
+    outline: none;
+    border: 1px solid colors.$background-blue;
+  }
+}
+
+.input-error {
+  color: rgb(238, 5, 5);
+  padding: 0.6rem 0;
+  font-weight: 600;
+}

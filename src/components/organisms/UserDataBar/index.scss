@@ -1,0 +1,16 @@
+@use '/src/components/sass/mixins';
+@use '/src/components/sass/colors';
+
+.user-data-bar {
+  @include mixins.flexRow;
+
+  justify-content: space-between;
+
+  padding-top: 1rem;
+  height: 135px;
+
+  &__right {
+    @include mixins.flexColumn;
+    justify-content: flex-end;
+  }
+}

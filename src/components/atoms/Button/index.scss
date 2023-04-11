@@ -1,0 +1,32 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.button {
+  padding: 0.7rem;
+  background-color: colors.$background-blue;
+  border: transparent;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &.full {
+    @include mixins.buttonSize(100%);
+  }
+
+  &.small {
+    @include mixins.buttonSize(100px);
+  }
+
+  &.medium {
+    @include mixins.buttonSize(300px);
+  }
+
+  &.large {
+    @include mixins.buttonSize(600px);
+  }
+
+  &:active {
+    background-color: lighten($color: colors.$background-blue, $amount: 8);
+  }
+}

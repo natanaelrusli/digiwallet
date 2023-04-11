@@ -1,0 +1,9 @@
+@use '/src/components/sass/mixins';
+
+.username-label {
+  @include mixins.flexColumn;
+
+  &__name {
+    margin-bottom: 3px;
+  }
+}
