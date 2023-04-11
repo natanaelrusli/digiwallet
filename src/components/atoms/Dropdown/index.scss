@@ -7,11 +7,12 @@
   border: 1px solid colors.$border-gray;
   width: fit-content;
   padding: 0 0.5rem;
+  width: 100%;
+  max-width: 200px;
 }
 
 .dropdown {
-  width: 200px;
-  
+  width: 100%;
   cursor: pointer;
   padding: 0.7rem 0.6rem;
   background-color: colors.$background-gray;

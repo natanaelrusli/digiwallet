@@ -15,3 +15,17 @@
 @mixin roundedCorner {
   border-radius: 6px;
 }
+
+@mixin rounderCornerLeft {
+  border-radius: 6px 0px 0px 6px;
+}
+
+@mixin rounderCornerRight {
+  border-radius: 0px 6px 6px 0px;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

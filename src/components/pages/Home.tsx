@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { Dropdown } from "../atoms"
+import { Dropdown, Input } from "../atoms"
 import { IDropdownOption } from "../atoms/Dropdown"
 import Layout from "../layouts/Layout"
-import { UserDataBar } from "../organisms"
+import { FilterBar, UserDataBar } from "../organisms"
 
 const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState<string | number>();
@@ -32,11 +32,8 @@ const Home = () => {
     <>
       <Layout>
         <UserDataBar />
-        <Dropdown
+        <FilterBar
           options={dropdownOptions}
-          placeholder="Filter Transactions"
-          selectedItem={selectedFilter}
-          onChange={onValueChange}
         />
       </Layout>
     </>

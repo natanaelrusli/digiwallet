@@ -1,4 +1,33 @@
 @use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.input-wrapper {
+  @include mixins.flexRow;
+  @include mixins.roundedCorner;
+  border: 1px solid colors.$border-gray;
+  width: 100%;
+  height: 100%;
+  
+  .prefix {
+    @include mixins.flexCenter;
+    width: 15%;
+    max-width: 3.7rem;
+    color: colors.$text-gray;
+  }
+
+  .prefix-left {
+    @extend .prefix;
+    @include mixins.rounderCornerLeft;
+    
+    padding-left: 0.6rem;
+  }
+
+  .prefix-right {
+    @extend .prefix;
+    @include mixins.rounderCornerRight;
+    padding-right: 0.6rem;
+  }
+}
 
 .input {
   width: 100%;
@@ -6,11 +35,11 @@
   font-size: 0.9rem;
   border-radius: 6px;
   text-decoration: none;
-  border: 1px solid colors.$border-gray;
+  border: transparent;
+  background-color: transparent;
 
   &:focus {
     outline: none;
-    border: 1px solid colors.$background-blue;
   }
 }
 
