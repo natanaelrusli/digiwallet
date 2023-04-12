@@ -20,14 +20,23 @@ const index = ({ handleLogin }: LoginFormProps) => {
   })
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    return e
+    if (e.target.name === 'email') {
+      setLoginData({
+        ...loginData,
+        email: e.target.value
+      })
+    } else if (e.target.name === 'password') {
+      setLoginData({
+        ...loginData,
+        password: e.target.value
+      })
+    }
   }
 
   const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const button: HTMLButtonElement = event.currentTarget;
-    console.log(button.name)
+    handleLogin(loginData)
   };
   
   return (
@@ -49,7 +58,7 @@ const index = ({ handleLogin }: LoginFormProps) => {
         className='login-form__button'
         label='LOGIN'
         size='full'
-        onClick={buttonHandler}
+        onClick={(buttonHandler)}
       />
     </div>
   )

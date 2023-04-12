@@ -1,8 +1,20 @@
+import React, { useContext } from 'react'
+
 import { NavLink } from 'react-router-dom'
 import { Label } from '../../atoms'
 import './index.scss'
+import { AuthContext } from '../../../context/AuthContext'
+import { useCookies } from 'react-cookie'
 
 const index = () => {
+  const { authenticated, setAuthenticated } = useContext(AuthContext)
+  const [, setCookie, removeCookie] = useCookies(['token']);
+  
+  const handleLogout = () => {
+    setAuthenticated(false)
+    removeCookie('token')
+  }
+  
   return (
     <nav className='navbar'>
       <div className="navbar__container">
@@ -37,9 +49,9 @@ const index = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink className='navbar_item' to='/logout'>
+              <div className='navbar_item' onClick={handleLogout}>
                 Logout
-              </NavLink>
+              </div>
             </li>
           </ul>
         </div>

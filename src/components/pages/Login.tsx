@@ -1,17 +1,43 @@
-import React from 'react'
-import { ChangeEvent } from 'react'
+import React, { useContext, useEffect } from 'react'
 import AuthLayout from '../layouts/AuthLayout'
 import { LoginForm } from '../organisms'
 
 import LoginImage from '../../assets/login_image.png'
+import { useCookies } from 'react-cookie';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+interface LoginData {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
-  }
+  const [, setCookie] = useCookies(['token']);
+  const { authenticated, setAuthenticated } = useContext(AuthContext)
 
-  const loginHandler = () => {
-    console.log('loginHandler')
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (authenticated) {
+      navigate('/')
+    }
+  }, [])
+  
+  const loginHandler = async (loginData: LoginData) => {
+    const response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData)
+    })
+
+    if (response.ok) {
+      const { data } = await response.json()
+      setAuthenticated(true)
+      setCookie("token", data.token, { path: '/' })
+      navigate('/')
+    } else {
+      alert('Login Failed')
+    }
   }
 
   return (

@@ -16,6 +16,7 @@ export type InputCompProps = {
 }
 
 const index = ({
+  name,
   type,
   error,
   onChange,
@@ -39,6 +40,7 @@ const index = ({
           </span>
         }
         <input
+          name={name}
           type={type}
           onChange={onChange}
           className='input'

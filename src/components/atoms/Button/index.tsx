@@ -13,10 +13,10 @@ const buttonSize = (size?: string): string => {
   return size? size : 'medium'
 }
 
-const index = ({ name, className, label, size }: ButtonProps) => {
+const index = ({ name, className, label, size, onClick }: ButtonProps) => {
   return (
     <div className={className}>
-      <button name={name} className={`button ${buttonSize(size)}`}>
+      <button name={name} className={`button ${buttonSize(size)}`} onClick={onClick}>
         { label }
       </button>
     </div>
