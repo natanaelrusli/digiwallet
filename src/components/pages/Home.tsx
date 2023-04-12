@@ -29,16 +29,11 @@ const Home = () => {
     console.log(filterData)
   }, [filterData])
   
-  const onValueChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (event.target.name === 'sort-direction') {
       setFilterData({
         ...filterData,
         sortValue: event.target.value
-      })
-    } else if (event.target.name === 'sort-date') {
-      setFilterData({
-        ...filterData,
-        dateValue: event.target.value
       })
     } else if (event.target.name === 'filter-transactions') {
       setFilterData({
@@ -46,6 +41,13 @@ const Home = () => {
         filterValue: event.target.value
       })
     }
+  }
+
+  const onDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterData({
+      ...filterData,
+      dateValue: event.target.value
+    })
   }
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,9 +79,9 @@ const Home = () => {
         <FilterBar
           filterOptions={dropdownOptions}
           filterData={filterData}
-          handleDateChange={onValueChange}
-          handleFilterChange={onValueChange}
-          handleSortChange={onValueChange}
+          handleDateChange={onDateChange}
+          handleFilterChange={onSelectChange}
+          handleSortChange={onSelectChange}
           handleSearchChange={onInputChange}
         />
       </Layout>

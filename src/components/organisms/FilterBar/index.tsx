@@ -1,13 +1,13 @@
 import React from 'react'
 import './index.scss'
 
-import { Dropdown, Input, Label } from '../../atoms'
+import { DatePicker, Dropdown, Input, Label } from '../../atoms'
 import { IDropdownOption } from '../../atoms/Dropdown'
 import { SortDropdown } from './DropdownOptions'
 
 type FilterBarProps = {
   handleFilterChange?: React.ChangeEventHandler<HTMLSelectElement>
-  handleDateChange?: React.ChangeEventHandler<HTMLSelectElement>
+  handleDateChange?: React.ChangeEventHandler<HTMLInputElement>
   handleSortChange?: React.ChangeEventHandler<HTMLSelectElement>
   handleSearchChange?: React.ChangeEventHandler<HTMLInputElement>
 
@@ -52,13 +52,10 @@ const index = ({
           className='right__label'
         />
 
-        <Dropdown
-          name='sort-date'
-          options={filterOptions}
-          placeholder="Filter Transactions"
-          selectedItem={filterData.dateValue}
-          onChange={handleDateChange}
+        <DatePicker
           className='right__dropdown'
+          placeholder='Date'
+          onChange={handleDateChange}
         />
 
         <Dropdown

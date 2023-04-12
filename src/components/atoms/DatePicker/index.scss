@@ -1,7 +1,7 @@
 @use '/src/components/sass/colors';
 @use '/src/components/sass/mixins';
 
-.dropdown-wrapper {
+.datepicker-wrapper {
   @include mixins.roundedCorner;
   background-color: colors.$background-gray;
   border: 1px solid colors.$border-gray;
@@ -9,15 +9,15 @@
   padding: 0 0.5rem;
   width: 100%;
   max-width: 200px;
-  
-  .dropdown {
+
+  .datepicker {
     width: 100%;
     cursor: pointer;
     padding: 0.7rem 0.6rem;
     background-color: colors.$background-gray;
     border: transparent;
     outline: none;
-  
+
     color: colors.$text-gray;
   }
 }
