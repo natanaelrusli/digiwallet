@@ -7,8 +7,6 @@ import { FilterBar, UserDataBar } from "../organisms"
 import { FilterData } from "../organisms/FilterBar"
 
 const Home = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string | number>();
-
   const [filterData, setFilterData] = useState<FilterData>({
     filterValue: '',
     dateValue: '',
@@ -51,10 +49,10 @@ const Home = () => {
   }
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.name)
-    setSelectedFilter(
-      event.target.value
-    )
+    setFilterData({
+      ...filterData,
+      searchValue: event.target.value
+    })
   }
 
   const dropdownOptions: IDropdownOption[] = [
