@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChangeEventHandler } from 'react';
 import { Input, Label } from '../../atoms'
 import './index.scss'
@@ -13,7 +14,16 @@ type InputGroupProps = {
   className?: string
 }
 
-const index = ({ name, placeholder, value, onChange, type, error, label, className }: InputGroupProps) => {
+const index = ({
+  name,
+  placeholder,
+  value,
+  onChange,
+  type,
+  error,
+  label,
+  className
+}: InputGroupProps) => {
   return (
     <div className= {`input-group ${className}`}>
       <Label

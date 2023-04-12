@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.scss'
 
 export interface IDropdownOption {
@@ -23,23 +24,21 @@ const index = ({
 }: DropdownProps) => {
 
   return (
-    <div className={className}>
-      <div className='dropdown-wrapper'>
-        <select
-          name={name}
-          className='dropdown'
-          onChange={onChange}
-          value={selectedItem}
-        >
-          {
-            options.map((option) => (
-              <option value={option.labelValue} key={option.labelValue}>
-                { option.label }
-              </option>
-            ))
-          }
-        </select>
-      </div>
+    <div className={`dropdown-wrapper ${className ? className : ''}`}>
+      <select
+        name={name}
+        className='dropdown'
+        onChange={onChange}
+        value={selectedItem}
+      >
+        {
+          options.map((option) => (
+            <option value={option.labelValue} key={option.labelValue}>
+              { option.label }
+            </option>
+          ))
+        }
+      </select>
     </div>
   )
 }

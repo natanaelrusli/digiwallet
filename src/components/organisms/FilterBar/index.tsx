@@ -1,28 +1,46 @@
+import React from 'react'
 import './index.scss'
 
 import { Dropdown, Input, Label } from '../../atoms'
-import { DropdownProps, IDropdownOption } from '../../atoms/Dropdown'
+import { IDropdownOption } from '../../atoms/Dropdown'
+import { SortDropdown } from './DropdownOptions'
 
-export interface FilterBarProps {
+type FilterBarProps = {
+  handleFilterChange?: React.ChangeEventHandler<HTMLSelectElement>
+  handleDateChange?: React.ChangeEventHandler<HTMLSelectElement>
+  handleSortChange?: React.ChangeEventHandler<HTMLSelectElement>
+  handleSearchChange?: React.ChangeEventHandler<HTMLInputElement>
+
   className?: string
+  filterOptions: IDropdownOption[]
+  filterData: FilterData
+}
+
+export type FilterData = {
+  filterValue: string
+  dateValue: string
+  sortValue: string
+  searchValue: string
 }
 
 const index = ({
-  options,
-  selectedItem,
-  onChange
-}: DropdownProps,
-{
-  className
+  filterOptions,
+  className,
+  handleFilterChange,
+  handleDateChange,
+  handleSortChange,
+  handleSearchChange,
+  filterData
 }: FilterBarProps) => {
   return (
     <div className={`filter-bar ${className ? className : ''}`}>
       <div className="filter-bar__left">
         <Dropdown
-          options={options}
+          name='filter-transactions'
+          options={filterOptions}
           placeholder="Filter Transactions"
-          selectedItem={selectedItem}
-          onChange={onChange}
+          selectedItem={filterData.filterValue}
+          onChange={handleFilterChange}
         />
       </div>
 
@@ -34,30 +52,32 @@ const index = ({
           className='right__label'
         />
 
-        <div className="right__input">
-          <Dropdown
-            options={options}
-            placeholder="Filter Transactions"
-            selectedItem={selectedItem}
-            onChange={onChange}
-          />
-        </div>
+        <Dropdown
+          name='sort-date'
+          options={filterOptions}
+          placeholder="Filter Transactions"
+          selectedItem={filterData.dateValue}
+          onChange={handleDateChange}
+          className='right__dropdown'
+        />
 
-        <div className="right__input">
-          <Dropdown
-            options={options}
-            placeholder="Filter Transactions"
-            selectedItem={selectedItem}
-            onChange={onChange}
-          />
-        </div>
+        <Dropdown
+          name='sort-direction'
+          options={SortDropdown}
+          placeholder="Filter Transactions"
+          selectedItem={filterData.sortValue}
+          onChange={handleSortChange}
+          className='right__dropdown'
+        />
 
-        <div className='right__input'>
-          <Input
-            prefixLeft="🔍"
-            backgroundColor="#F9F9F9"
-          />
-        </div>
+        <Input
+          onChange={handleSearchChange}
+          value={filterData.searchValue}
+          name='search-input'
+          prefixLeft="🔍"
+          backgroundColor="#F9F9F9"
+          className='right-input'
+        />
       </div>
     </div>
   )

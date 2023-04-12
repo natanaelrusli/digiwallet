@@ -1,13 +1,14 @@
+import React from 'react'
 import { ChangeEvent, useState } from 'react'
 import Button from '../../atoms/Button'
 import { InputGroup } from '../../molecules'
 import './index.scss'
 
 type LoginFormProps = {
-  handleLogin: Function
+  handleLogin: (loginData: LoginData) => void
 }
 
-type LoginData = {
+export type LoginData = {
   email: string
   password: string
 }
@@ -19,7 +20,15 @@ const index = ({ handleLogin }: LoginFormProps) => {
   })
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    return e
   }
+
+  const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    const button: HTMLButtonElement = event.currentTarget;
+    console.log(button.name)
+  };
   
   return (
     <div className='login-form'>
@@ -36,9 +45,11 @@ const index = ({ handleLogin }: LoginFormProps) => {
         onChange={handleInput}
       />
       <Button
+        name='login-button'
         className='login-form__button'
         label='LOGIN'
         size='full'
+        onClick={buttonHandler}
       />
     </div>
   )

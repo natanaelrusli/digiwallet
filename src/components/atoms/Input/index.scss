@@ -5,8 +5,6 @@
   @include mixins.flexRow;
   @include mixins.roundedCorner;
   border: 1px solid colors.$border-gray;
-  width: 100%;
-  height: 100%;
   
   .prefix {
     @include mixins.flexCenter;
@@ -31,6 +29,7 @@
 
 .input {
   width: 100%;
+  height: 100%;
   padding: 0.7rem 0.6rem;
   font-size: 0.9rem;
   border-radius: 6px;
