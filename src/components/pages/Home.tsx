@@ -5,8 +5,98 @@ import { IDropdownOption } from "../atoms/Dropdown"
 import Layout from "../layouts/Layout"
 import { FilterBar, UserDataBar } from "../organisms"
 import { FilterData } from "../organisms/FilterBar"
+import { DataTable } from '../atoms'
+import { ColumnDefinitionType } from '../atoms/DataTable'
+
+export type Transactions = {
+  date: string;
+  amount: number;
+  description: string;
+  from: number;
+  to: number;
+  source_of_fund: number
+}
 
 const Home = () => {
+
+  const transactions: Transactions[]= [
+    {
+      "date": "2023-03-31 02:53:52.704244+07",
+      "amount": 75000,
+      "description": "Kopi Kenangan",
+      "from": 100000001,
+      "to": 10000002,
+      "source_of_fund": 0
+    },
+    {
+      "date": "2023-04-10 02:53:52.704244+07",
+      "amount": 100000,
+      "description": "Top Up from Bank Transfer",
+      "from": 100000001,
+      "to": 0,
+      "source_of_fund": 1
+    },
+    {
+      "date": "2023-03-31 02:53:52.704244+07",
+      "amount": 75000,
+      "description": "Kopi Kenangan",
+      "from": 100000001,
+      "to": 10000002,
+      "source_of_fund": 0
+    },
+    {
+      "date": "2023-04-10 02:53:52.704244+07",
+      "amount": 100000,
+      "description": "Top Up from Bank Transfer",
+      "from": 100000001,
+      "to": 0,
+      "source_of_fund": 1
+    },
+    {
+      "date": "2023-03-31 02:53:52.704244+07",
+      "amount": 75000,
+      "description": "Kopi Kenangan",
+      "from": 100000001,
+      "to": 10000002,
+      "source_of_fund": 0
+    },
+    {
+      "date": "2023-04-10 02:53:52.704244+07",
+      "amount": 100000,
+      "description": "Top Up from Bank Transfer",
+      "from": 100000001,
+      "to": 0,
+      "source_of_fund": 1
+    }
+  ]
+
+  const columns: ColumnDefinitionType<Transactions, keyof Transactions>[] = [
+    {
+      key: 'date',
+      header: 'Date'
+    },
+    {
+      key: 'amount',
+      header: 'Amount'
+    },
+    {
+      key: 'description',
+      header: 'Description'
+    },
+    {
+      key: 'from',
+      header: 'From'
+    },
+    {
+      key: 'to',
+      header: 'To'
+    },
+    {
+      key: 'source_of_fund',
+      header: 'Source of fund'
+    },
+  ]
+
   const [filterData, setFilterData] = useState<FilterData>({
     filterValue: '',
     dateValue: '',
@@ -81,6 +171,10 @@ const Home = () => {
           handleFilterChange={onSelectChange}
           handleSortChange={onSelectChange}
           handleSearchChange={onInputChange}
+        />
+        <DataTable
+          data={transactions}
+          columns={columns}
         />
       </Layout>
     </>
