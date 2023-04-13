@@ -8,6 +8,8 @@ import { FilterData } from "../organisms/FilterBar"
 import { DataTable } from '../atoms'
 import { ColumnDefinitionType } from '../atoms/DataTable'
 
+import { useCookies } from 'react-cookie'
+
 export type Transactions = {
   date: string;
   amount: number;
@@ -17,7 +19,34 @@ export type Transactions = {
   source_of_fund: number
 }
 
+type UserData = {
+  Username: string;
+  AccountNumber: string;
+  Balance: number;
+}
+
+
 const Home = () => {
+  const [cookie, setCookie] = useCookies(['token']);
+  const [userData, setUserData] = useState<UserData>({
+    Username: '',
+    AccountNumber: '',
+    Balance: 0
+  })
+  
+  useEffect(() => {
+    const headers = {'Authorization': `Bearer ${cookie.token}`}
+    fetch('http://localhost:8090/profiles', { headers })
+      .then(response => response.json())
+      .then(data => {
+        setUserData({
+          Username: data.data.Name,
+          AccountNumber: data.data.WalletID,
+          Balance: data.data.Balance
+      })
+      console.log(data)
+    });
+  }, [])
 
   const transactions: Transactions[]= [
     {
@@ -159,7 +188,9 @@ const Home = () => {
   return (
     <>
       <Layout>
-        <UserDataBar />
+        <UserDataBar
+          data={userData}
+        />
         <FilterBar
           filterOptions={dropdownOptions}
           filterData={filterData}

@@ -1,3 +1,4 @@
+import React from 'react'
 import './index.scss'
 
 type LabelProps = {
@@ -5,6 +6,7 @@ type LabelProps = {
   fontSize?: string
   fontWeight?: 'bold' | 'normal' | 'light' | string
   className?: string
+  align?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent'
 }
 
 const getFontWeight = (weight: string): string => {
@@ -19,14 +21,16 @@ const getFontWeight = (weight: string): string => {
   }
 }
 
-const index = ({ className, text, fontSize, fontWeight }: LabelProps) => {
+const index = ({ className, text, fontSize, fontWeight, align }: LabelProps) => {
   return (
     <div className={className}>
       <label
         className='header-label' 
         style={{
           fontSize: fontSize? fontSize : '2rem',
-          fontWeight: getFontWeight(fontWeight?fontWeight : 'normal')
+          fontWeight: getFontWeight(fontWeight?fontWeight : 'normal'),
+          textAlign: align? align : 'start',
+          width: '100%',
         }}
       >
         { text }

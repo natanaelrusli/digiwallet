@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ChangeEvent, useState } from 'react'
 import Button from '../../atoms/Button'
 import { InputGroup } from '../../molecules'
@@ -38,6 +38,10 @@ const index = ({ handleLogin }: LoginFormProps) => {
 
     handleLogin(loginData)
   };
+
+  useEffect(() => {
+    console.log(loginData)
+  }, [loginData])
   
   return (
     <div className='login-form'>

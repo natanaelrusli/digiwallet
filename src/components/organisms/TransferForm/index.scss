@@ -1,0 +1,21 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.transfer-form-wrapper {
+  align-items: center;
+  margin: auto;
+  height: 100%;
+  width: 40%;
+  border: 1px solid colors.$border-gray;
+  @include mixins.roundedCorner;
+  padding: 2rem;
+
+  .transfer-form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .transfer-form-button {
+    margin-top: 1rem;
+  }
+}

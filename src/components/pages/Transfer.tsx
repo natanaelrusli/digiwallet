@@ -1,12 +1,13 @@
+import React from "react"
+
 import Layout from "../layouts/Layout"
+import { TransferForm } from "../organisms"
 
 const Transfer = () => {
   return (
-    <>
-      <Layout>
-        <h1>Transfer</h1>
-      </Layout>
-    </>
+    <Layout>
+      <TransferForm />
+    </Layout>
   )
 }
 

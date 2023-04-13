@@ -24,7 +24,7 @@ const Login = () => {
   }, [])
   
   const loginHandler = async (loginData: LoginData) => {
-    const response = await fetch("http://localhost:8000/login", {
+    const response = await fetch("http://localhost:8090/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginData)

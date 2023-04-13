@@ -1,17 +1,24 @@
+import React from 'react'
+
 import { Label } from '../../atoms'
 import './index.scss'
 
-const index = () => {
+type UsernameLabelProps = {
+  Name: string
+  AccountNumber: string
+}
+
+const index = ({Name, AccountNumber}: UsernameLabelProps) => {
   return (
     <div className='username-label'>
       <Label
-        text={`Good Morning, Asep!`}
+        text={`Good Morning, ${Name}`}
         fontSize='2rem'
         fontWeight='700'
         className='username-label__name'
       />
       <Label
-        text={`Account: 130293021`}
+        text={`Account: ${AccountNumber}`}
         fontSize='1.1rem'
         fontWeight='light'
         className='username-label__account-number'

@@ -1,7 +1,13 @@
+import React from 'react'
 import { Label } from '../../atoms'
 import './index.scss'
+import { formatCurrency } from '../../../helpers/formatter'
 
-const index = () => {
+type BalanceProps = {
+  balance: number
+}
+
+const index = ({balance}: BalanceProps) => {
   return (
     <div className='balance-label'>
       <Label
@@ -11,7 +17,7 @@ const index = () => {
         className='balance-label__top'
       />
       <Label
-        text={`IDR 13.750.000,00`}
+        text={formatCurrency(balance)}
         fontSize='2.2rem'
         fontWeight='500'
         className='balance-label__bottom'

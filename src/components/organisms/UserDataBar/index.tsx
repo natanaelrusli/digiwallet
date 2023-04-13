@@ -1,14 +1,31 @@
+import React from 'react'
+
 import { UsernameLabel, BalanceLabel } from '../../molecules'
 import './index.scss'
 
-const index = () => {
+type UserData = {
+  Username: string;
+  AccountNumber: string;
+  Balance: number;
+}
+
+type UserDataBarProps = {
+  data: UserData
+}
+
+const index = ({data}: UserDataBarProps) => {
   return (
     <div className='user-data-bar'>
       <div className='user-data-bar__left'>
-        <UsernameLabel />
+        <UsernameLabel
+          Name={data.Username}
+          AccountNumber={data.AccountNumber}
+        />
       </div>
       <div className='user-data-bar__right'>
-        <BalanceLabel />
+        <BalanceLabel
+          balance={data.Balance}
+        />
       </div>
     </div>
   )
