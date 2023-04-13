@@ -2,6 +2,7 @@ import React from 'react'
 
 import './index.scss'
 import { Transactions } from '../../pages/Home';
+import { formatCurrency, formatDate } from '../../../helpers/formatter';
 
 export type ColumnDefinitionType<T, K extends keyof T> = {
   key: K;
@@ -38,11 +39,10 @@ const index = <T, K extends keyof T>({
           {
             data.map((row, index) => (
               <tr key={index}>
-                <td>{row.date}</td>
-                <td>{row.amount}</td>
+                <td>{formatDate(row.date)}</td>
+                <td>{formatCurrency(row.amount)}</td>
                 <td>{row.description}</td>
-                <td>{row.from}</td>
-                <td>{row.to}</td>
+                <td>{row.to ? row.to : row.from}</td>
                 <td>{row.source_of_fund}</td>
               </tr>
             ))

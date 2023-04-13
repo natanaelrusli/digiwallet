@@ -85,11 +85,7 @@ const Home = () => {
     },
     {
       key: 'from',
-      header: 'From'
-    },
-    {
-      key: 'to',
-      header: 'To'
+      header: 'From / To'
     },
     {
       key: 'source_of_fund',
