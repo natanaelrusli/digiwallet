@@ -7,14 +7,10 @@ import AuthImage from '../../assets/auth_image.png'
 
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
-import { useCookies } from "react-cookie"
 import { toast } from "react-toastify"
 
-// TODO: Create custom hooks for POST request
-
 const Register = () => {
-  const [, setCookie] = useCookies(['token']);
-  const { setAuthenticated, authenticated } = useContext(AuthContext)
+  const { authenticated } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
@@ -31,11 +27,9 @@ const Register = () => {
       body: JSON.stringify(userData)
     })
 
-    if (response.ok) {
-      const { data } = await response.json()
-      setAuthenticated(true)
-      setCookie("token", data.token, { path: '/' })
-      navigate('/')
+    if (response.ok && response.status === 201) {
+      navigate('/login')
+      toast.success(`${userData.name} account has been created!`)
     } else {
       toast.error('Register Error')
     }
