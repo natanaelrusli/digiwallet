@@ -38,6 +38,11 @@ const index = ({handleRegister}: RegisterFormProps) => {
   }
 
   const handleErrorOnBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    setErrors({
+      ...errors,
+      [e.target.name]: ''
+    })
+
     if (userData.name === '' && e.target.name === 'name') {
       setErrors({
         ...errors,
@@ -50,7 +55,14 @@ const index = ({handleRegister}: RegisterFormProps) => {
         ...errors,
         email: 'Please fill in your email'
       })
-    } 
+    }
+
+    if (userData.email && !ValidateEmail(userData.email)) {
+      setErrors({
+        ...errors,
+        email: 'Please input a valid email'
+      })
+    }
     
     if (userData.password === '' && e.target.name === 'password') {
       setErrors({
@@ -59,7 +71,7 @@ const index = ({handleRegister}: RegisterFormProps) => {
       })
     }
 
-    if (userData.password && !ValidateEmail(userData.email)) {
+    if (userData.password && !ValidatePasswordLength(userData.password, 8, 16)) {
       setErrors({
         ...errors,
         password: 'Please input a valid password between 8 and 16 characters long'

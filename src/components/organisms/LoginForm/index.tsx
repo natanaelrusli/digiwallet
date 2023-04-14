@@ -43,6 +43,11 @@ const index = ({ handleLogin }: LoginFormProps) => {
   }
 
   const handleErrorOnBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    setErrors({
+      ...errors,
+      [e.target.name]: ''
+    })
+    
     if (loginData.email === '' && e.target.name === 'email') {
       setErrors({
         ...errors,
@@ -64,10 +69,10 @@ const index = ({ handleLogin }: LoginFormProps) => {
       })
     }
 
-    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 16)) {
+    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 18)) {
       setErrors({
         ...errors,
-        password: 'Please input a valid password between 8 and 16 characters long'
+        password: 'Please input a valid password between 8 and 18 characters long'
       })
     }
   }
@@ -99,10 +104,10 @@ const index = ({ handleLogin }: LoginFormProps) => {
       }
     }
 
-    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 16)) {
+    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 18)) {
       errorData = {
         ...errorData,
-        password: 'Please input a valid password between 8 and 16 characters long'
+        password: 'Please input a valid password between 8 and 18 characters long'
       }
     }
 
