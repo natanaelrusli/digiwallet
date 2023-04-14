@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react'
 import Button from '../../atoms/Button'
 import { InputGroup } from '../../molecules'
 import './index.scss'
-import { ValidateEmail } from '../../../helpers/validator'
+import { ValidateEmail, ValidatePasswordLength } from '../../../helpers/validator'
 
 // TODO: Validate Email [DONE]
 // TODO: Validate Password length
@@ -89,6 +89,13 @@ const index = ({ handleLogin }: LoginFormProps) => {
       errorData = {
         ...errorData,
         email: 'Please input a valid email'
+      }
+    }
+
+    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 16)) {
+      errorData = {
+        ...errorData,
+        password: 'Please input a valid password'
       }
     }
 
