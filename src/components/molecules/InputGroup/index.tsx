@@ -12,6 +12,7 @@ type InputGroupProps = {
   error?: string
   label: string
   className?: string
+  onBlur?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const index = ({
@@ -22,7 +23,8 @@ const index = ({
   type,
   error,
   label,
-  className
+  className,
+  onBlur
 }: InputGroupProps) => {
   return (
     <div className= {`input-group ${className}`}>
@@ -36,6 +38,7 @@ const index = ({
           error={error}
           placeholder={placeholder}
           onChange={onChange}
+          onBlur={onBlur}
           type={type}
           value={value}
         />

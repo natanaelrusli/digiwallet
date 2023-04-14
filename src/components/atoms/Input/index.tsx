@@ -7,6 +7,7 @@ export type InputCompProps = {
   placeholder?:string;
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?:ChangeEventHandler<HTMLInputElement>;
   type?: string;
   error?: string
   prefixLeft?: string
@@ -25,7 +26,8 @@ const index = ({
   prefixLeft,
   prefixRight,
   className,
-  backgroundColor
+  backgroundColor,
+  onBlur
 }: InputCompProps) => {
   return (
     <>
@@ -43,6 +45,7 @@ const index = ({
           name={name}
           type={type}
           onChange={onChange}
+          onBlur={onBlur}
           className='input'
           value={value}
           placeholder={placeholder}

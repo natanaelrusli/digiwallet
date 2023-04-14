@@ -9,6 +9,7 @@ import { DataTable } from '../atoms'
 
 import { useCookies } from 'react-cookie'
 import { TApiResponse, useApiGet } from '../../hooks/useFetch'
+import { BASE_URL, profiles } from '../../constants/apiEndpoint'
 
 export type Transactions = {
   date: string;
@@ -21,7 +22,7 @@ export type Transactions = {
 
 
 const Home = () => {
-  const [cookie, setCookie] = useCookies(['token']);
+  const [cookie] = useCookies(['token']);
 
   const transactions: Transactions[]= [
     {
@@ -149,7 +150,7 @@ const Home = () => {
     Balance: number;
   }
   
-  const response: TApiResponse = useApiGet('http://localhost:8090/profiles', cookie.token)
+  const response: TApiResponse = useApiGet(`${BASE_URL}${profiles}`, cookie.token)
   
   let userData: UserData = {
     Username: '',

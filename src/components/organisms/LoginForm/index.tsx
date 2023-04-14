@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ChangeEvent, useState } from 'react'
 import Button from '../../atoms/Button'
 import { InputGroup } from '../../molecules'
 import './index.scss'
+import { ValidateEmail } from '../../../helpers/validator'
+
+// TODO: Validate Email [DONE]
+// TODO: Validate Password length
 
 type LoginFormProps = {
   handleLogin: (loginData: LoginData) => void
@@ -19,6 +23,11 @@ const index = ({ handleLogin }: LoginFormProps) => {
     password: ''
   })
 
+  const [ errors, setErrors ] = useState({
+    email: '',
+    password: '',
+  })
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'email') {
       setLoginData({
@@ -33,10 +42,77 @@ const index = ({ handleLogin }: LoginFormProps) => {
     }
   }
 
+  const handleErrorOnBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    if (loginData.email === '' && e.target.name === 'email') {
+      setErrors({
+        ...errors,
+        email: 'Please fill in your email'
+      })
+    } 
+    
+    if (loginData.password === '' && e.target.name === 'password') {
+      setErrors({
+        ...errors,
+        password: 'Please fill in your password'
+      })
+    }
+
+    if (loginData.email && !ValidateEmail(loginData.email)) {
+      setErrors({
+        ...errors,
+        email: 'Please input a valid email'
+      })
+    }
+  }
+
+  const handleErrorOnSubmit = (): boolean => {
+    let errorData = {
+      email: '',
+      password: '',
+    }
+
+    if (loginData.email === '') {
+      errorData = {
+        ...errorData,
+        email: 'Please fill in your email'
+      }
+    } 
+    
+    if (loginData.password === '') {
+      errorData = {
+        ...errorData,
+        password: 'Please fill in your password'
+      }
+    }
+
+    if (loginData.email && !ValidateEmail(loginData.email)) {
+      errorData = {
+        ...errorData,
+        email: 'Please input a valid email'
+      }
+    }
+
+    setErrors({
+      ...errors,
+      email: errorData.email,
+      password: errorData.password
+    })
+
+    if (errorData.email !== '' || errorData.password !== '') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    handleLogin(loginData)
+    const hasErrors = handleErrorOnSubmit()
+
+    if (errors.email === '' && errors.password === '' && !hasErrors) {
+      handleLogin(loginData)
+    }
   };
   
   return (
@@ -45,13 +121,17 @@ const index = ({ handleLogin }: LoginFormProps) => {
         name='email'
         label='Email'
         type='email'
+        onBlur={handleErrorOnBlur}
         onChange={handleInput}
+        error={errors.email}
       />
       <InputGroup
         name='password'
         label='Password'
         type='password'
+        onBlur={handleErrorOnBlur}
         onChange={handleInput}
+        error={errors.password}
       />
       <Button
         name='login-button'
