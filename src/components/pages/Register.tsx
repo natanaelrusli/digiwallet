@@ -8,6 +8,9 @@ import AuthImage from '../../assets/auth_image.png'
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 import { useCookies } from "react-cookie"
+import { toast } from "react-toastify"
+
+// TODO: Create custom hooks for POST request
 
 const Register = () => {
   const [, setCookie] = useCookies(['token']);
@@ -34,7 +37,7 @@ const Register = () => {
       setCookie("token", data.token, { path: '/' })
       navigate('/')
     } else {
-      alert('Register Failed')
+      toast.error('Register Error')
     }
   }
   

@@ -63,6 +63,13 @@ const index = ({ handleLogin }: LoginFormProps) => {
         email: 'Please input a valid email'
       })
     }
+
+    if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 16)) {
+      setErrors({
+        ...errors,
+        password: 'Please input a valid password between 8 and 16 characters long'
+      })
+    }
   }
 
   const handleErrorOnSubmit = (): boolean => {
@@ -95,7 +102,7 @@ const index = ({ handleLogin }: LoginFormProps) => {
     if (loginData.password && !ValidatePasswordLength(loginData.password, 8, 16)) {
       errorData = {
         ...errorData,
-        password: 'Please input a valid password'
+        password: 'Please input a valid password between 8 and 16 characters long'
       }
     }
 
