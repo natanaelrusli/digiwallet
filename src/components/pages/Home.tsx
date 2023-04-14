@@ -22,9 +22,7 @@ export type Transactions = {
 
 
 const Home = () => {
-  const [cookie] = useCookies(['token']);
-
-  const transactions: Transactions[]= [
+  const transactionsData = [
     {
       "date": "2023-03-31 02:53:52.704244+07",
       "amount": 75000,
@@ -75,6 +73,9 @@ const Home = () => {
     }
   ]
 
+  const [cookie] = useCookies(['token']);
+  const [transactions, setTransactions] = useState<Transactions[]>(transactionsData)
+
   const columns: string[] = [
     'Date',
     'Type',
@@ -89,15 +90,6 @@ const Home = () => {
     sortValue: '',
     searchValue: '',
   });
-
-  useEffect(() => {
-    setFilterData({
-      filterValue: '10',
-      dateValue: '',
-      sortValue: 'desc',
-      searchValue: ''
-    })
-  }, [])
   
   const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (event.target.name === 'sort-direction') {
@@ -142,7 +134,6 @@ const Home = () => {
     }
   ]
 
-
   // USING CUSTOM HOOKS
   type UserData = {
     Username: string;
@@ -167,6 +158,23 @@ const Home = () => {
   }
 
   // END OF USING CUSTOM HOOKS
+
+  useEffect(() => {
+    setFilterData({
+      filterValue: '10',
+      dateValue: '',
+      sortValue: 'desc',
+      searchValue: ''
+    })
+  }, [])
+
+  useEffect(() => {
+    const filteredArray = transactionsData.filter((obj) => {
+      return obj.description.toLowerCase().includes(filterData.searchValue.toLowerCase()) || obj.amount.toString().toLowerCase().includes(filterData.searchValue.toLowerCase());
+    })
+    
+    setTransactions(filteredArray)
+  }, [filterData])
 
   return (
     <>
