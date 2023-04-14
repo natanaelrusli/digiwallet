@@ -6,9 +6,9 @@ import Layout from "../layouts/Layout"
 import { FilterBar, UserDataBar } from "../organisms"
 import { FilterData } from "../organisms/FilterBar"
 import { DataTable } from '../atoms'
-import { ColumnDefinitionType } from '../atoms/DataTable'
 
 import { useCookies } from 'react-cookie'
+import { TApiResponse, useApiGet } from '../../hooks/useFetch'
 
 export type Transactions = {
   date: string;
@@ -19,34 +19,9 @@ export type Transactions = {
   source_of_fund: number
 }
 
-type UserData = {
-  Username: string;
-  AccountNumber: string;
-  Balance: number;
-}
-
 
 const Home = () => {
   const [cookie, setCookie] = useCookies(['token']);
-  const [userData, setUserData] = useState<UserData>({
-    Username: '',
-    AccountNumber: '',
-    Balance: 0
-  })
-  
-  useEffect(() => {
-    const headers = {'Authorization': `Bearer ${cookie.token}`}
-    fetch('http://localhost:8090/profiles', { headers })
-      .then(response => response.json())
-      .then(data => {
-        setUserData({
-          Username: data.data.Name,
-          AccountNumber: data.data.WalletID,
-          Balance: data.data.Balance
-      })
-      console.log(data)
-    });
-  }, [])
 
   const transactions: Transactions[]= [
     {
@@ -99,27 +74,12 @@ const Home = () => {
     }
   ]
 
-  const columns: ColumnDefinitionType<Transactions, keyof Transactions>[] = [
-    {
-      key: 'date',
-      header: 'Date'
-    },
-    {
-      key: 'amount',
-      header: 'Amount'
-    },
-    {
-      key: 'description',
-      header: 'Description'
-    },
-    {
-      key: 'from',
-      header: 'From / To'
-    },
-    {
-      key: 'source_of_fund',
-      header: 'Source of fund'
-    },
+  const columns: string[] = [
+    'Date',
+    'Type',
+    'Amount',
+    'Description',
+    'From'
   ]
 
   const [filterData, setFilterData] = useState<FilterData>({
@@ -137,10 +97,6 @@ const Home = () => {
       searchValue: ''
     })
   }, [])
-
-  useEffect(() => {
-    console.log(filterData)
-  }, [filterData])
   
   const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (event.target.name === 'sort-direction') {
@@ -184,6 +140,32 @@ const Home = () => {
       labelValue: 'last_month'
     }
   ]
+
+
+  // USING CUSTOM HOOKS
+  type UserData = {
+    Username: string;
+    AccountNumber: string;
+    Balance: number;
+  }
+  
+  const response: TApiResponse = useApiGet('http://localhost:8090/profiles', cookie.token)
+  
+  let userData: UserData = {
+    Username: '',
+    AccountNumber: '',
+    Balance: 0
+  }
+
+  if (!response.loading) {
+    userData = {
+      Username: response.data.Name,
+      Balance: response.data.Balance,
+      AccountNumber: response.data.WalletID
+    }
+  }
+
+  // END OF USING CUSTOM HOOKS
 
   return (
     <>

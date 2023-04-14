@@ -8,30 +8,33 @@ export type TApiResponse = {
   loading: boolean;
 };
 
-export const useApiGet = (url: string): TApiResponse => {
+export const useApiGet = (url: string, token: string): TApiResponse => {
   const [status, setStatus] = useState<number>(0);
   const [statusText, setStatusText] = useState<string>('');
   const [data, setData] = useState<any>();
   const [error, setError] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getAPIData = async () => {
     setLoading(true);
     try {
-      const apiResponse = await fetch(url);
+      const headers = {'Authorization': `Bearer ${token}`}
+      const apiResponse = await fetch(url, { headers });
       const json = await apiResponse.json();
       setStatus(apiResponse.status);
       setStatusText(apiResponse.statusText);
       setData(json);
     } catch (error) {
       setError(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
     getAPIData();
   }, []);
 
-  return { status, statusText, data, error, loading };
+  // NIH DI SPREAD DATA NYA BIAR GA DATA.DATA.DATA
+  return { status, statusText, ...data, error, loading };
 };

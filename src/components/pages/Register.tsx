@@ -22,7 +22,6 @@ const Register = () => {
   }, [])
 
   const registerHandler = async (userData: UserData) => {
-    console.log(userData)
     const response = await fetch("http://localhost:8090/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

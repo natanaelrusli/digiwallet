@@ -10,15 +10,15 @@ export type ColumnDefinitionType<T, K extends keyof T> = {
   width?: number;
 }
 
-type TableProps<T, K extends keyof T> = {
+type TableProps = {
   data: Transactions[];
-  columns: Array<ColumnDefinitionType<T,K>>
+  columns: Array<string>
 }
 
-const index = <T, K extends keyof T>({
+const index = ({
   data,
   columns
-}: TableProps<T, K>) => {
+}: TableProps) => {
 
   return (
     <div className='data-table-wrapper'>
@@ -27,8 +27,8 @@ const index = <T, K extends keyof T>({
           <tr>
             {
               columns.map((col) => (
-                <th key={col.header}>
-                  {col.header}
+                <th key={col}>
+                  {col}
                 </th>
               ))
             }
@@ -40,10 +40,14 @@ const index = <T, K extends keyof T>({
             data.map((row, index) => (
               <tr key={index}>
                 <td>{formatDate(row.date)}</td>
+                <td>
+                  {
+                    row.source_of_fund ? 'CREDIT' : 'DEBIT'
+                  }
+                </td>
                 <td>{formatCurrency(row.amount)}</td>
                 <td>{row.description}</td>
-                <td>{row.to ? row.to : row.from}</td>
-                <td>{row.source_of_fund}</td>
+                <td>{row.source_of_fund ? row.source_of_fund : row.to}</td>
               </tr>
             ))
           }
