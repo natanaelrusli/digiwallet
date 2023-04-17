@@ -32,22 +32,25 @@ const index = ({
         name='from'
         label='From'
         disabled={true}
-        value={accountNumber?.toString()}
+        value={accountNumber?.toString() || ''}
       />
       <InputGroup
         name='to'
         label='To'
         onChange={(e) => setTo(parseInt(e.target.value))}
+        value={to.toString() === '0' ? '' : to.toString()}
       />
       <InputGroup
         name='amount'
         label='Amount'
         onChange={(e) => setAmount(parseInt(e.target.value))}
+        value={amount.toString() === '0' ? '' : amount.toString()}
       />
       <InputGroup
         name='desc'
         label='Description'
         onChange={(e) => setDesc(e.target.value)}
+        value={desc.toString() === '' ? '' : desc.toString()}
       />
 
       <Button

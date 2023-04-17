@@ -26,7 +26,7 @@ const index = ({
   label,
   className,
   onBlur,
-  disabled
+  disabled,
 }: InputGroupProps) => {
   return (
     <div className= {`input-group ${className}`}>
