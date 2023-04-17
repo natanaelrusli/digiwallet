@@ -6,6 +6,7 @@ import { BASE_URL, profiles } from "../../constants/apiEndpoint"
 import { TApiResponse, useApiGet } from "../../hooks/useFetch"
 import { useCookies } from 'react-cookie'
 import { ToastContainer, toast } from "react-toastify"
+import { FileInput } from "../atoms"
 
 type ResponseType = {
   amount?: number
@@ -53,6 +54,7 @@ const Transfer = () => {
 
   return (
     <Layout>
+      <FileInput />
       <TransferForm
         onSubmit={handleTransfer}
         accountNumber={profileData?.data?.WalletID}

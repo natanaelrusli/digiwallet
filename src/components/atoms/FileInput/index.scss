@@ -1,0 +1,43 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.file-input {
+  border: 1px solid colors.$border-gray;
+  padding: 1rem;
+  margin: 2rem 0;
+
+  @include mixins.roundedCorner;
+
+  height: fit-content;
+
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    color: #fff;
+    background: colors.$background-blue;
+    padding: 10px 20px;
+
+    @include mixins.roundedCorner;
+  }
+
+  input[type=file]::file-selector-button:hover {
+    background: darken($color: colors.$background-blue, $amount: 10);
+  }
+
+  &__image-container {
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid colors.$border-gray;
+    margin: 1rem 0;
+    padding: 10px;
+    
+    @include mixins.roundedCorner;
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+}

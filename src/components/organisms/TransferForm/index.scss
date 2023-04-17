@@ -5,7 +5,8 @@
   align-items: center;
   margin: auto;
   height: 100%;
-  width: 40%;
+  width: 50%;
+  min-width: 470px;
   border: 1px solid colors.$border-gray;
   @include mixins.roundedCorner;
   padding: 2rem;
