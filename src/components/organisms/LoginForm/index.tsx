@@ -140,6 +140,7 @@ const index = ({ handleLogin }: LoginFormProps) => {
         name='email'
         label='Email'
         type='email'
+        value={loginData.email}
         onBlur={handleErrorOnBlur}
         onChange={handleInput}
         error={errors.email}
@@ -148,6 +149,7 @@ const index = ({ handleLogin }: LoginFormProps) => {
         name='password'
         label='Password'
         type='password'
+        value={loginData.password}
         onBlur={handleErrorOnBlur}
         onChange={handleInput}
         error={errors.password}

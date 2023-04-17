@@ -40,6 +40,10 @@
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    background-color: colors.$border-gray;
+  }
 }
 
 .input-error {

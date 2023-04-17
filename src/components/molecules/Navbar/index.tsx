@@ -7,7 +7,7 @@ import { AuthContext } from '../../../context/AuthContext'
 import { useCookies } from 'react-cookie'
 
 const index = () => {
-  const { authenticated, setAuthenticated } = useContext(AuthContext)
+  const { setAuthenticated } = useContext(AuthContext)
   const [, setCookie, removeCookie] = useCookies(['token']);
   
   const handleLogout = () => {

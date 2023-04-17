@@ -14,6 +14,7 @@ export type InputCompProps = {
   prefixRight?: string
   className?: string
   backgroundColor?: string
+  disabled?: boolean
 }
 
 const index = ({
@@ -27,7 +28,8 @@ const index = ({
   prefixRight,
   className,
   backgroundColor,
-  onBlur
+  onBlur,
+  disabled
 }: InputCompProps) => {
   return (
     <>
@@ -49,6 +51,7 @@ const index = ({
           className='input'
           value={value}
           placeholder={placeholder}
+          disabled={disabled}
         />
         {
           prefixRight &&

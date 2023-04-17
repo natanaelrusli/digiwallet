@@ -179,9 +179,14 @@ const Home = () => {
   return (
     <>
       <Layout>
-        <UserDataBar
-          data={userData}
-        />
+        {
+          userData ? 
+          <UserDataBar
+            data={userData}
+          />
+          :
+          <h1>Loading</h1>
+        }
         <FilterBar
           filterOptions={dropdownOptions}
           filterData={filterData}

@@ -24,7 +24,7 @@ const index = ({data}: UserDataBarProps) => {
       </div>
       <div className='user-data-bar__right'>
         <BalanceLabel
-          balance={data.Balance}
+          balance={data.Balance || 0}
         />
       </div>
     </div>

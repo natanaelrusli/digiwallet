@@ -17,7 +17,7 @@ const index = ({balance}: BalanceProps) => {
         className='balance-label__top'
       />
       <Label
-        text={formatCurrency(balance)}
+        text={formatCurrency(balance) || 'IDR 0'}
         fontSize='2.2rem'
         fontWeight='500'
         className='balance-label__bottom'

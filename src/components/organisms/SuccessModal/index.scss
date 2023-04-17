@@ -1,0 +1,68 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.success-modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: rgba($color: gray, $alpha: 0.4);
+}
+
+.success-modal {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 500px;
+  height: 600px;
+
+  position: absolute;
+
+  @include mixins.roundedCorner;
+  @include mixins.flexColumn;
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: colors.$text-green;
+  }
+
+  &__detail {
+    @include mixins.flexRow;
+    justify-content: space-between;
+    width: 70%;
+    margin: 4px 0;
+    font-weight: 300;
+
+    &__left {
+      display: flex;
+      align-items: center;
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+      &.bold {
+        font-weight: bold;
+        font-size: x-large;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 50px;
+    width: 50%;
+    @include mixins.flexRow;
+    justify-content: space-between;
+  }
+}

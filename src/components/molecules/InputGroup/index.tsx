@@ -13,6 +13,7 @@ type InputGroupProps = {
   label: string
   className?: string
   onBlur?: ChangeEventHandler<HTMLInputElement>;
+  disabled?: boolean;
 }
 
 const index = ({
@@ -24,7 +25,8 @@ const index = ({
   error,
   label,
   className,
-  onBlur
+  onBlur,
+  disabled
 }: InputGroupProps) => {
   return (
     <div className= {`input-group ${className}`}>
@@ -41,6 +43,7 @@ const index = ({
           onBlur={onBlur}
           type={type}
           value={value}
+          disabled={disabled}
         />
     </div>
   )

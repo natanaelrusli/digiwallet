@@ -3,8 +3,11 @@ const formatter = new Intl.NumberFormat('en-US', {
   currency: 'IDR'
 })
 
-export const formatCurrency = (amount: number): string => {
-  return formatter.format(amount)
+export const formatCurrency = (amount?: number): string => {
+  if (amount) {
+    return formatter.format(amount)
+  }
+  return ''
 }
 
 export const formatDate = (date: string): string => {

@@ -24,7 +24,7 @@ const index = ({handleRegister}: RegisterFormProps) => {
     name: ''
   })
 
-  const [ errors, setErrors ] = useState({
+  const [ errors, setErrors ] = useState<UserData>({
     email: '',
     password: '',
     name: ''
@@ -128,7 +128,7 @@ const index = ({handleRegister}: RegisterFormProps) => {
       name: errorData.name
     })
 
-    if (errorData.email !== '' || errorData.password !== '') {
+    if (errorData.email !== '' || errorData.password !== '' || errorData.name !== '') {
       return true
     } else {
       return false
@@ -140,7 +140,7 @@ const index = ({handleRegister}: RegisterFormProps) => {
 
     const hasErrors = handleErrorOnSubmit()
 
-    if (errors.email === '' && errors.password === '' && errors.name === '' &&!hasErrors) {
+    if (errors.email === '' && errors.password === '' && errors.name === '' && !hasErrors) {
       handleRegister(userData, e)
     }
   };
@@ -151,10 +151,17 @@ const index = ({handleRegister}: RegisterFormProps) => {
         name='name'
         label='Name'
         type='text'
-        error={errors.name}
         onChange={(e) => handleInput(e)}
         onBlur={handleErrorOnBlur}
+        error={errors.name}
       />
+      {
+        <div className='error'>
+          {
+            errors.name
+          }
+        </div>
+      }
       <InputGroup
         name='email'
         label='Email'

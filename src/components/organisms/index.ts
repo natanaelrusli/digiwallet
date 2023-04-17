@@ -3,6 +3,7 @@ import RegisterForm from './RegisterForm'
 import UserDataBar from './UserDataBar'
 import FilterBar from './FilterBar'
 import TransferForm from './TransferForm'
+import SuccessModal from './SuccessModal'
 import { UserData } from './RegisterForm'
 
 export {
@@ -10,7 +11,8 @@ export {
   RegisterForm,
   UserDataBar,
   FilterBar,
-  TransferForm
+  TransferForm,
+  SuccessModal
 }
 
 export type { UserData }
