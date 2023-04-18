@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 
 import Layout from "../layouts/Layout"
-import { SuccessModal, TransferForm } from "../organisms"
+import { MultiLevelSelect, SuccessModal, TransferForm } from "../organisms"
 import { BASE_URL, profiles } from "../../constants/apiEndpoint"
 import { TApiResponse, useApiGet } from "../../hooks/useFetch"
 import { useCookies } from 'react-cookie'
 import { ToastContainer, toast } from "react-toastify"
-import { FileInput } from "../atoms"
+import { Button } from "../atoms"
 
 type ResponseType = {
   amount?: number
@@ -16,7 +16,9 @@ type ResponseType = {
 
 const Transfer = () => {
   const [cookie] = useCookies(['token']);
+  
   const [showModal, setShowModal] = useState<boolean>(false)
+  
   const profileData: TApiResponse = useApiGet(`${BASE_URL}${profiles}`, cookie.token)
   const [response, setResponse] = useState<{
     data: ResponseType,
@@ -54,7 +56,6 @@ const Transfer = () => {
 
   return (
     <Layout>
-      <FileInput />
       <TransferForm
         onSubmit={handleTransfer}
         accountNumber={profileData?.data?.WalletID}

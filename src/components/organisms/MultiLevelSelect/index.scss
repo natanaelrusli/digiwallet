@@ -1,0 +1,80 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.multi-level-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 300px;
+  border: 2px solid colors.$border-gray;
+  background-color: #fff;
+
+  margin: 20px 0px;
+
+  @include mixins.roundedCorner;
+
+  .category-level-wrapper {
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .category-level {
+    display: flex;
+    flex-direction: column;
+
+    width: 33.7%;
+    padding: 10px;
+    border-right: 2px solid colors.$border-gray;
+
+    .right-arrow {
+      margin-left: 3px;
+    }
+
+    .selected {
+      color: colors.$background-blue;
+    }
+
+    .multi-level-1 {
+      border-bottom: 1px solid colors.$border-gray;
+      padding: 5px;
+      cursor: pointer;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+
+  .category-level-3 {
+    @extend .category-level;
+    border-right: 0px;
+  }
+
+  .multi-level-submit {
+    padding: 0 10px;
+  }
+}

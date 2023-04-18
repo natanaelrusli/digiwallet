@@ -11,6 +11,7 @@ const index = () => {
     const selectedFiles = e.target.files as FileList
     setCurrentImage(selectedFiles?.[0])
     setPreviewImage(URL.createObjectURL(selectedFiles?.[0]))
+    console.log(URL.createObjectURL(selectedFiles?.[0]))
   }
 
   return (
