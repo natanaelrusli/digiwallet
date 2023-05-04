@@ -36,9 +36,13 @@
   text-decoration: none;
   border: transparent;
   background-color: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
 
   &:focus {
     outline: none;
+    border: 1px solid colors.$background-blue;
+    transition: all 0.2s ease-in-out;
   }
 
   &:disabled {

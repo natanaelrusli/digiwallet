@@ -1,10 +1,16 @@
+import React from "react"
+
 import Layout from "../layouts/Layout"
+import { TopupForm } from "../organisms"
+import { Card } from "../atoms"
 
 const Topup = () => {
   return (
     <>
       <Layout>
-        <h1>Topup</h1>
+        <Card marginTop="5rem">
+          <TopupForm />
+        </Card>
       </Layout>
     </>
   )

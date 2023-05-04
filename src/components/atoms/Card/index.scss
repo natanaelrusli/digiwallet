@@ -1,0 +1,9 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.card {
+  padding: 1.5rem;
+  border: 1.5px solid colors.$border-gray;
+
+  @include mixins.roundedCorner;
+}

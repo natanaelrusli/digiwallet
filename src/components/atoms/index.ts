@@ -5,6 +5,7 @@ import Dropdown from './Dropdown'
 import DatePicker from './DatePicker'
 import DataTable from './DataTable'
 import FileInput from './FileInput'
+import Card from './Card'
 
 export {
   Label,
@@ -13,7 +14,8 @@ export {
   Dropdown,
   DatePicker,
   DataTable,
-  FileInput
+  FileInput,
+  Card
 }
 
 export type { InputCompProps }

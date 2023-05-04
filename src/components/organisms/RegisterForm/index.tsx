@@ -155,13 +155,6 @@ const index = ({handleRegister}: RegisterFormProps) => {
         onBlur={handleErrorOnBlur}
         error={errors.name}
       />
-      {
-        <div className='error'>
-          {
-            errors.name
-          }
-        </div>
-      }
       <InputGroup
         name='email'
         label='Email'

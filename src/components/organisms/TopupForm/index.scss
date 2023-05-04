@@ -1,0 +1,8 @@
+@use '/src/components/sass/colors';
+@use '/src/components/sass/mixins';
+
+.topup-form {
+  &__header {
+    margin-bottom: 2rem;
+  }
+}
